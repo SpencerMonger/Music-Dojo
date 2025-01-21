@@ -6,6 +6,7 @@ import type { Song } from "../types/music"
 
 export default function Home() {
   const [playlist, setPlaylist] = useState<Song[]>([])
+  const [currentSong, setCurrentSong] = useState<Song | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -18,8 +19,8 @@ export default function Home() {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         const data = await response.json()
-        console.log('Fetched playlist data:', data) // Debug log
         setPlaylist(data)
+        setCurrentSong(data[0]) // Set initial song
       } catch (error) {
         console.error('Error fetching playlist:', error)
         setError(error instanceof Error ? error.message : 'Failed to fetch playlist')
@@ -31,13 +32,9 @@ export default function Home() {
     fetchPlaylist()
   }, [])
 
-  // Debug logs
-  console.log('Current state:', {
-    loading,
-    error,
-    playlistLength: playlist.length,
-    playlist
-  })
+  const handleSongChange = (song: Song) => {
+    setCurrentSong(song)
+  }
 
   if (loading) {
     return <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -58,8 +55,26 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <MusicPlayer playlist={playlist} />
-    </main>
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background GIF with overlay */}
+      <div className="fixed inset-0 w-full h-full">
+        <div className="absolute inset-0 bg-black/50 z-10" /> {/* Dark overlay */}
+        {currentSong && (
+          <img
+            src={currentSong.background}
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        )}
+      </div>
+
+      {/* Content */}
+      <main className="relative z-20 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <MusicPlayer 
+          playlist={playlist} 
+          onSongChange={handleSongChange}
+        />
+      </main>
+    </div>
   )
 }
