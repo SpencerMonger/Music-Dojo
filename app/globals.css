@@ -7,6 +7,49 @@
   transition: all 0.5s ease-in-out;
 }
 
+/* Add custom styles for music player transitions */
+.music-player-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.music-player-mini {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  transform-origin: top left;
+  z-index: 50;
+  padding: 8px !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-player-mini img {
+  width: 120px !important;
+  height: 120px !important;
+  margin-bottom: 4px !important;
+}
+
+.music-player-mini .title-container {
+  margin-top: 2px;
+  max-width: 180px;
+  padding: 0 4px;
+  text-align: center;
+}
+
+.music-player-mini .title-text {
+  font-size: 0.875rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* Add smooth drag movement */
+.dragging {
+  transition: none !important; /* Disable transition during drag for smoother movement */
+  cursor: grabbing !important;
+}
+
 /* Add any custom styles below */
 
 @layer base {
