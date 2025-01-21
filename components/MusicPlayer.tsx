@@ -8,9 +8,10 @@ import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-rea
 
 interface MusicPlayerProps {
   playlist: Song[]
+  onSongChange: (song: Song) => void
 }
 
-export function MusicPlayer({ playlist }: MusicPlayerProps) {
+export function MusicPlayer({ playlist, onSongChange }: MusicPlayerProps) {
   console.log('MusicPlayer received playlist:', playlist)
 
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
@@ -145,6 +146,11 @@ export function MusicPlayer({ playlist }: MusicPlayerProps) {
       setVolume(newVolume)
     }
   }
+
+  // Update useEffect to call onSongChange when currentSongIndex changes
+  useEffect(() => {
+    onSongChange(playlist[currentSongIndex])
+  }, [currentSongIndex, onSongChange, playlist])
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-6">

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add smooth transitions for background changes */
+.background-transition {
+  transition: all 0.5s ease-in-out;
+}
+
 /* Add any custom styles below */
 
 @layer base {

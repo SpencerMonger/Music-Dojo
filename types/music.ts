@@ -5,6 +5,7 @@ export interface Song {
     album: string
     cover: string
     audio: string
+    background: string
   }
   
   export interface PlaylistItem {

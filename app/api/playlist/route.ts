@@ -10,7 +10,8 @@ export async function GET() {
       artist: "My Guy",
       album: "Night Creatures",
       cover: "/images/SD_cover1.png",  // Note the path starts from public
-      audio: "/audio/drama.mp3"
+      audio: "/audio/drama.mp3",
+      background: "/backgrounds/surreal.gif" 
     },
     {
       id: "2",
@@ -18,7 +19,8 @@ export async function GET() {
       artist: "My Guy",
       album: "Night Creatures",
       cover: "/images/anothercover.png",
-      audio: "/audio/holymoly.mp3"
+      audio: "/audio/holymoly.mp3",
+      background: "/backgrounds/furry.gif"
     },
     {
       id: "3",
@@ -26,7 +28,8 @@ export async function GET() {
       artist: "My Guy",
       album: "Night Creatures",
       cover: "/images/onecover.png",
-      audio: "/audio/howcouldyou.mp3"
+      audio: "/audio/howcouldyou.mp3",
+      background: "/backgrounds/codered.gif"
     }
     // Add more songs following the same structure
   ]
